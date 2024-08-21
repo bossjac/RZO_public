@@ -1,0 +1,1173 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e4e5f1;
+    color: #333;
+    transition: background-color 0.3s ease
+}
+
+body>header:nth-child(1) {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+body>header:nth-child(1)>p:nth-child(2) {
+    margin-top: 11px;
+}
+
+header {
+    padding: 0;
+    display: flex;
+    justify-content: end;
+    align-items: first baseline;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 3px solid #413f3f;
+    border-radius: 10px;
+    height: 40px;
+    padding-top: 10px;
+    position: relative;
+}
+
+h1 {
+    margin-left: 20px;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 12px;
+    margin: 5px;
+}
+
+header .button-container {
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #0ea45f;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: normal;
+}
+
+.button-container {
+    display: flex;
+    gap: 1px;
+}
+
+
+div.button-container:nth-child(2) {
+    margin-bottom: 0px;
+}
+
+button svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+
+button:hover {
+    background-color: #363a3d;
+    color: #fff;
+}
+
+main {
+    padding: 0 10px;
+    margin-left: auto;
+}
+
+.dark-mode {
+    background-color: #111;
+    color: #eee;
+}
+
+.dark-mode header {
+    background-color: #131313;
+    color: #fff;
+    font-weight: bold;
+}
+
+.dark-mode button {
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+}
+
+.dark-mode button:hover {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+#darkModeBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
+    padding-bottom: 22px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+    padding-bottom: 15px;
+}
+
+
+.header h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.small-button {
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.box {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 5px;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.1);
+}
+
+.box-item {
+    flex-basis: calc(25% - 20px);
+    text-align: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    color: silver;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.barcode-number {
+    color: #fff;
+    flex-basis: calc(25% - 20px);
+    text-align: inherit;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.box-item-list {
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.icon-container {
+    margin-right: 5px;
+}
+
+.box-item:last-child {
+    margin-right: 0;
+}
+
+.header-box {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the data items */
+.data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1b1a1a;
+    padding: 0;
+    box-shadow: 0 9px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-item {
+    flex-basis: calc(100% / 8);
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+/* Apply margin-right only to all .box-item except the last one to avoid extra spacing */
+.box-item:not(:last-child) {
+    margin-right: 1px;
+}
+
+
+/* Add your custom CSS styles for the modal here */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 10%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    max-width: 400px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* Create Products heading */
+h2 {
+    font-size: 24px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Product Name field */
+#productName,
+#productsBarcode,
+#productsName,
+#productQuantity,
+#productPrice,
+#productBarcode,
+#newProductName,
+#newQuantity,
+#newPrice,
+#newBarcode,
+#newName,
+#newLastName,
+#newEmail,
+#newPhone,
+#newSolde {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-weight: bold;
+    display: inline-block;
+    width: calc(100% - 160px);
+}
+
+
+/* Product Price label */
+label[for="productName"],
+label[for="productsName"],
+label[for="productsBarcode"],
+label[for="productsBarcode"],
+label[for="productPrice"],
+label[for="productQuantity"],
+label[for="productBarcode"],
+label[for="newProductName"],
+label[for="newPrice"],
+label[for="newQuantity"],
+label[for="newBarcode"],
+label[for="clientName"],
+label[for="clientLastName"],
+label[for="clientEmail"],
+label[for="clientPhone"],
+label[for="newName"],
+label[for="newLastName"],
+label[for="newEmail"],
+label[for="newPhone"],
+label[for="newSolde"] {
+    display: inline-block;
+    font-weight: bold;
+    width: 150px;
+    text-align: left;
+    color: mintcream;
+}
+
+.close {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.small-button.delete-button:hover {
+    background-color: #ff4433;
+    color: #fff;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px;
+}
+
+.small-button.edit-button {
+    padding: 2px 6px;
+}
+
+.small-button.delete-button {
+    padding: 2px 6px;
+}
+
+#clientsBtn,
+#ordersBtn,
+#settingsBtn,
+#logout-button,
+#darkModeBtn {
+    font-weight: bold;
+    font-size: 13px;
+    display: inline-block;
+    padding: 1px 10px;
+    margin-bottom: 33px;
+    margin-top: 5px;
+}
+
+#ordersBtn {
+    margin-right: 10px;
+    margin-left: 0;
+    margin: 10px margin-bottom 33px;
+}
+
+#logout-button {
+    margin-right: 15px;
+    margin-top: 4px;
+}
+
+@keyframes vibration {
+    0% {
+        transform: translateX(0px);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 600px) {}
+
+
+h5 {
+    margin-bottom: 0px;
+    margin-top: 11px;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+/*#userEmail {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 13px;
+    margin-right: 30px;
+    color: #e5fff6;
+    top: 2px;
+}*/
+
+#sidebar {
+    float: right;
+    font-weight: bold;
+    width: 200px;
+    margin-top: 6px;
+    margin-left: 6px;
+    text-align: end;
+    border-left: 3px solid #413f3f;
+    padding-right: 240px;
+}
+
+
+#sidebar p {
+    margin-top: 1px;
+    margin-left: 10px;
+}
+
+#sidebar strong {
+    display: inline list-item;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#sidebar button {
+    margin: 4px;
+    font-size: 11px;
+}
+
+#sidebar .subtotal {
+    display: block ruby;
+    align-items: center;
+}
+
+h3.subtotal {
+    margin-left: 175px;
+    margin-bottom: 1px;
+}
+
+.subtotal {
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+}
+
+#sub_searchBarcode {
+    display: flex;
+    align-items: center;
+    /*margin-left: 100px;*/
+}
+
+#sub_searchBarcode a {
+    display: ruby;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+a {
+    font-size: 12.5px;
+}
+
+#barcodeInputSection {
+    margin-left: 5px;
+    pointer-events: none;
+}
+
+#sub_searchBarcode input[type="text"] {
+    font-weight: bold;
+    padding: 3px;
+    width: 185px;
+}
+
+#input-section-scan {
+    font-weight: bold;
+    padding: 3px;
+}
+
+#data-row>p:nth-child(5) {
+    margin-bottom: 40px;
+}
+
+#data-row {
+    margin-bottom: 20px;
+}
+
+
+#data-row>p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#data-row>p span {
+    display: block ruby;
+    color: #b5ff8b;
+    color: silver;
+    font-size: 14px;
+}
+
+#unitCost {
+    margin-left: 88px;
+}
+
+#presentationValue {
+    margin-left: 24px;
+}
+
+#sub_dosage {
+    margin-left: 63px;
+}
+
+#sub_productName {
+    margin-left: 60px;
+}
+
+#sub_barcode {
+    margin-left: 57px;
+}
+
+#sub_subtotalValue {
+    font-weight: bold;
+    color: #b9fff8;
+    font-size: 30px;
+}
+
+#resetButton {
+    padding-top: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#resetButton svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+#black-box {
+    background-color: #151515;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+#button-container button {
+    background-color: #111;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+#productContainer {
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+#info {
+    text-align: left;
+    font-weight: bold;
+    font-size: 12px;
+    color: #bed7ff;
+}
+
+.product-info {
+    margin-left: -15px;
+    margin-top: -17px;
+}
+
+#barcode-scan {
+    margin-right: 10px;
+    padding: 4px 4px;
+    background-color: transparent;
+}
+
+.minus-button {
+    padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 14px;
+}
+
+#totalValue {
+    font-size: 20px;
+    color: #ffdcb6;
+}
+.total {
+    font-size: 20px;
+    position: fixed;
+    top: 12px;
+    left: 210px;
+}
+
+div.top-item:nth-child(2) {
+  margin-left: -20px;
+}
+
+div.box-item:nth-child(2) {
+  margin-left: -23px;
+}
+
+div.top-item:nth-child(4) {
+  margin-left: 20px;
+}
+
+div.box-item:nth-child(4) {
+  margin-left: 20px;
+}
+
+.clients-modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 5%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    max-width: 890px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.C-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+.products-modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 6%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.P-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+.labels-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 34px;
+}
+
+.label-group {
+    flex-basis: calc(50% - 5px);
+    margin-right: 5px;
+}
+
+.label-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+div.label-group:nth-child(1) > label:nth-child(1) {
+  margin-left: 0px;
+}
+
+.label-group button {
+    display: block;
+    margin-top: 16px;
+}
+
+#clientPhone,
+#clientLastName,
+#clientEmail {
+  margin-left: 10px;
+}
+
+#clientsContainer {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+#productsContainer {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.C-close {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.C-close:hover,
+.C-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.P-close {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.P-close:hover,
+.P-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.client-close {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.client-close:hover,
+.client-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.C-box {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.1);
+}
+
+.C-box-item {
+    flex-basis: calc(25% - 20px);
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    color: siler;
+    display: inline;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.barcodeclose {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.barcodeclose:hover,
+.barcodeclose:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.BarcodeScanModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+.barcode-modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 10%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    max-width: 250px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.input-section {
+  display: grid;
+}
+
+
+.svg-scan {
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.cashClose {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cashClose:hover,
+.cashClose:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cashModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+.cash-modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 10%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    max-width: 640px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#check {
+    display: flex;
+}
+
+.cashButton {
+    margin-right: 10px;
+    margin-left: 5px;
+    padding: 10px 90px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttonRow {
+    display: block;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.boxButton {
+    border: 0.5px solid #5b5b5b;
+    padding: 5px;
+    margin-right: 10px;
+    height: 70px;
+    width: 70px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.no-border {
+    border: none;
+}
+
+#buttonContainer {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -70px;
+}
+
+.buttonContainer > .buttonRow:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+#sumDiv {
+  margin-left: 280px;
+  margin-bottom: 10px;
+}
+
+#cashDiv {
+  margin-left: 280px;
+}
+
+#soldeDiv {
+  margin-left: 280px;
+  margin-top: -65px;
+  margin-bottom: 42px;
+}
+
+#sumValue {
+    margin-left: 182px;
+    font-weight: bold;
+    color: #d6ff8f;
+    font-size: 30px;
+}
+
+#cashValue {
+    margin-left: 109px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#soldeValue {
+    margin-left: 130px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#backspace {
+  background-color: #6d9d87;
+  color: black;
+}
+
+
+.payLaterModel {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: vibration 0.3s ease-in-out;
+}
+
+.payLater-modal-content {
+    background-color: #111;
+    margin: auto;
+    margin-top: 15%;
+    padding: 20px;
+    border: 4px solid #2c2c2c;
+    max-width: 300px;
+    width: 30%;
+    border-radius: 10px;
+}
+
+.payLaterModelClose {
+    color: #ccc;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.payLaterModelClose:hover,
+.payLaterModelClose:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#paylaterContainer {
+  font-weight: bold;
+  text-align: left;
+}
+
+.client-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.client-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    margin-left: 50px;
+}
+
+.client-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#DonePayLater {
+    background-color: #f2f2f2;
+    color: black;
+    display: flex;
+    margin-left: 115px;
+}
+
+#paylaterContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 11px;
+}
+
+h4 {
+  text-align: center;
+  display: block ;
+  font-style: italic;
+}
+
+/*#historic-section {
+    border-left: 3px solid #242424;
+    padding-left: 10px;
+    margin-left: 730px;
+    height: 100%;
+    margin-top: -20px;
+}*/
+
+.title {
+  margin-right: 50px;
+}
+
+#toggleInputButton {
+  padding: 5px;
+  background-color: transparent;
+}
+
+
+/* CSS for product display */
+#productsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+.product-item {
+    border: 1.5px solid #a8a98a9c;
+    padding: 10px;
+    width: calc(30% - 20px); /* Two products per row */
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease-in-out;
+    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+}
+
+.product-item:hover {
+    border-color: #fff; /* Change border color on hover */
+    box-shadow: 2px 2px 20px #515154; /* Add glowing effect */
+}
+
+.product-item > div {
+    margin-bottom: 5px;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-barcode {
+    font-style: italic;
+}
+
+.status-box {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    margin-right: 5px;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: bold;
+}
+.status-oui {
+    background-color: #0ea45f;
+}
+.status-non {
+    background-color: red;
+}
+
+#userUUID {
+    display: none;
+}
+
+#productsBarcode {
+    margin-left: -135px;
+}
+
+#searchButton {
+    margin-left: -270px;
+    margin-top: 22px;
+}
+
+.C-data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #baa7a70f;
+    padding: 45px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    box-shadow: 0 9px 5px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    color: darkgray;
+}
+
+#ItemName,
+#ItemBarcode,
+#ItemPrice,
+#ItemStock,
+#ItemCreate,
+#ItemModify {
+    cursor: pointer;
+}
+
+#ItemName:hover,
+#ItemBarcode:hover,
+#ItemPrice:hover,
+#ItemStock:hover,
+#ItemCreate:hover,
+#ItemModify:hover {
+    color: rgb(121, 203, 154);
+}
+
+
+#nameSortIndicator,
+#barcodeSortIndicator,
+#priceSortIndicator,
+#quantitySortIndicator,
+#createdSortIndicator,
+#createdSortIndicator {
+    font-size: 0.75em; 
+    vertical-align: middle; 
+    margin-left: 5px;
+}

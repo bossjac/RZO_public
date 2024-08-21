@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>POS System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>RZO</h1>
+        <p class="total"><strong>Total: <span id="totalValue"></span></strong></p>
+        <div class="button-container">
+            <div id="userUUID"></div>
+            <div id="userEmail" class="user-email"></div>
+              <button id="clientsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                </svg>
+                Clients
+            </button>
+
+            <button id="ordersBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
+                </svg>
+                Produits
+            </button>
+
+            <button id="settingsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+                    <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z" />
+                </svg>
+                Pramètres
+            </button>
+            <button id="darkModeBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                    <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
+                </svg>
+            </button>
+            <button id="logout-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="sidebar">
+        <div id="sub_searchBarcode">
+            <a>Type Barcode or Scan ➡</a>
+            <input type="text" id="barcodeInput" placeholder="">
+
+            <button id="searchButton">Search</button>
+        </div>
+        <h3 class="subtotal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+            </svg>
+            Subtotal
+            <button id="resetButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                </svg>
+            </button>
+        </h3>
+        <div class="content">
+            <div id="data-row">
+                <p>CodeBarre: <span id="sub_barcode"></span></p>
+                <p>Produit: <span id="sub_productName"></span></p>
+                <p>Dosage: <span id="sub_dosage"></span></p>
+                <p>Presentation: <span id="presentationValue"></span></p>
+                <p>PPV: <span id="unitCost"></span></p>
+            </div>
+            <div id="sub_subtotalDisplay">
+                <p><strong>Subtotal: <span id="sub_subtotalValue">0.00</span></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="header">
+            <h3>Liste des stocks</h3>
+            <button id="small-button" class="small-button">Ajouter des produits</button>
+        </div>
+        <div class="data-item">
+            <div id="ItemId" class="top-item">Id</div>
+            <div id="ItemName" class="top-item">Nom <span id="nameSortIndicator">▲</span></div>
+            <div id="ItemBarcode" class="top-item">CodeBarre <span id="barcodeSortIndicator">▼</span></div>
+            <div id="ItemPrice" class="top-item">Prix <span id="priceSortIndicator">▼</span></div>
+            <div id="ItemStock" class="top-item">Stock <span id="quantitySortIndicator">▼</span></div>
+            <div class="top-item">Out Qty</div>
+            <div id="ItemCreate" class="top-item">Créé <span id="createdSortIndicator">▼</span></div>
+            <div id="ItemModify" class="top-item">Modifier <span id="updatedSortIndicator">▼</span></div>
+            <div class="top-item">Actions</div>
+        </div>
+        <div id="productContainer" class="table-body"></div>
+    </main>
+
+    <div id="barcodeScanModal" class="BarcodeScanModal">
+        <div class="barcode-modal-content">
+            <span class="barcodeclose">&times;</span>
+            <svg class="svg-scan" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
+            </svg>
+            <div class="input-section">
+              <input id="input-section-scan" type="text" placeholder="Scan" required>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="C-modal" class="C-modal">
+        <div class="clients-modal-content">
+            <span class="C-close">&times;</span>
+            <h2>Clients</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="labels-row">
+                    <div class="label-group">
+                        <label for="clientName">Prénom:</label>
+                        <input type="text" id="clientName" name="clientName" required>
+                    </div>
+                    <div class="label-group">
+                        <label for="clientLastName">Nom:</label>
+                        <input type="text" id="clientLastName" name="clientLastName" required>
+                    </div>
+                    <div class="label-group">
+                        <label for="clientEmail">Courriel:</label>
+                        <input type="email" id="clientEmail" name="clientEmail" required>
+                    </div>
+                    <div class="label-group">
+                        <label for="clientPhone">Téléphone:</label>
+                        <input type="tel" id="clientPhone" name="clientPhone" required>
+                    </div>
+                    <div class="label-group">
+                        <button type="client-submit" id="client-submit">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+            <div class="C-data-item">
+                <div class="C-top-item">Prénom</div>
+                <div class="C-top-item">Nom</div>
+                <div class="C-top-item">Courriel</div>
+                <div class="C-top-item">Téléphone</div>
+                <div class="C-top-item">Solde</div>
+                <div class="C-top-item">Actions</div>
+            </div>
+            <div id="clientsContainer" class="clients-table-body"></div>
+        </div>
+    </div>
+
+    <div id="client-edit-model" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="client-close-modal" class="client-close">&times;</span>
+            <h2>Edit Clients</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="newName">Nouveau prénom:</label>
+                    <input type="text" id="newName" name="newName" required>
+                </div>
+                <div class="form-group">
+                    <label for="newLastName">Nouveau nom:</label>
+                    <input type="text" id="newLastName" name="newLastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="newEmail">Nouveau courriel:</label>
+                    <input type="text" id="newEmail" name="newEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPhone">Nouveau téléphone:</label>
+                    <input type="tel" id="newPhone" name="newPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="newSolde">Solde:</label>
+                    <input type="number" id="newSolde" name="newSolde" required>
+                </div>
+                <button id="client-save-modal" class="save-button">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="P-modal" class="P-modal">
+        <div class="products-modal-content">
+            <span class="P-close">&times;</span>
+            <h2>Produits</h2>
+            <form id="searchForm" novalidate>
+                <div class="labels-row">
+                    <div class="label-group">
+                        <label for="productsName">Nom</label>
+                        <input type="text" id="productsName" name="productsName">
+                    </div>
+                    <div class="label-group">
+                        <label for="productsBarcode" class="labelproductsbarcode">CodeBarre</label>
+                        <input type="text" id="productsBarcode" name="productsBarcode">
+                    </div>
+                    <div class="label-group">
+                        <button type="submit" id="searchButton">Search</button>
+                    </div>
+                </div>
+            </form>
+            <div class="P-data-item">
+                <div id="productsContainer" class="products-table-body"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <button id="barcode-scan">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z" />
+                </svg>
+            </button>
+            <h2>Add Products</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="productName">Nom du produit:</label>
+                <input type="text" id="productName" name="productName" required>
+                <br>
+                <label for="productPrice">Prix de produit:</label>
+                <input type="number" id="productPrice" name="productPrice" required>
+                <br>
+                <label for="productQuantity">Quantité de produit:</label>
+                <input type="number" id="productQuantity" name="productQuantity" required>
+                <br>
+                <label for="productBarcode">CodeBarre:</label>
+                <input type="text" id="productBarcode" name="productBarcode" required>
+                <br>
+                <button type="submit" id="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="newProductName">Nouveau nom:</label>
+                    <input type="text" id="newProductName" name="newProductName" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPrice">Nouveau prix:</label>
+                    <input type="number" id="newPrice" name="newPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="newQuantity">Nouveau quantité:</label>
+                    <input type="number" id="newQuantity" name="newQuantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="newBarcode">Nouveau codebarre:</label>
+                    <input type="text" id="newBarcode" name="newBarcode" required>
+                </div>
+                <button id="saveModal" class="save-button">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="black-box">
+        <div id="info">
+            <div id="productInfo" class="product-info-container"></div>
+        </div>
+        <div id="button-container">
+            <button id="cash-open-modal">CheckOut</button>
+        </div>
+        <!-- Historic Section
+        <div id="historic-section">
+            <h3 class="title">Historic</h3>
+        </div>-->
+    </div>
+
+    <div id="cashModal" class="cashModal">
+        <div class="cash-modal-content">
+            <span class="cashClose">&times;</span>
+            <div id="sumDiv">
+                <strong>Sum: <span id="sumValue">0.00</span></strong>
+            </div>
+            <div id="cashDiv">
+                <strong>Espèces(MAD): <span id="cashValue">0.00</span></strong>
+            </div>
+            <div id="buttonContainer">
+                <div class="buttonRow">
+                    <button id="1" class="boxButton">1</button>
+                    <button id="2" class="boxButton">2</button>
+                    <button id="3" class="boxButton">3</button>
+                </div>
+                <div class="buttonRow">
+                    <button id="4" class="boxButton">4</button>
+                    <button id="5" class="boxButton">5</button>
+                    <button id="6" class="boxButton">6</button>
+                </div>
+                <div class="buttonRow">
+                    <button id="7" class="boxButton">7</button>
+                    <button id="8" class="boxButton">8</button>
+                    <button id="9" class="boxButton">9</button>
+                </div>
+                <div class="buttonRow">
+                    <button id="0" class="boxButton">0</button>
+                    <button id="backspace" class="boxButton no-border">↵</button>
+                </div>
+            </div>
+            <div id="soldeDiv">
+                <strong>Solde: <span id="soldeValue">0.00</span></strong>
+            </div>
+            <div id="check">
+                <button id="cash-button" class="cashButton">Cash</button>
+                <button id="cashLater" class="cashButton">Cash@Payer plus tard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="payLaterModel" class="payLaterModel" style="display: none;">
+        <div class="payLater-modal-content">
+            <span class="payLaterModelClose">&times;</span>
+            <h4>Choisissez un client pour paiement différé:</h4>
+            <div id="paylaterContainer"></div>
+            <button id="DonePayLater">Done</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script type="module" src="clients.js"></script>
+    <script type="module" src="products.js"></script>
+    <script type="module" src="barcodeScan.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="useruuid.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

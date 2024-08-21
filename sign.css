@@ -1,0 +1,130 @@
+body {
+    background-color: #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.container {
+    width: 350px;
+    padding: 30px;
+    background-color: #212121;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(107, 107, 107, 0.3);
+}
+
+.container h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+}
+
+.container .signup-form {
+    display: none;
+}
+
+#login-button,
+#signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #D2D3DB;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container .signup-form p {
+    text-align: center;
+    margin-top: 25px;
+    font-weight: bold;
+    color: #fff
+}
+
+.container .signup-form p a {
+    color: #f9ff44ba;
+    text-decoration: none;
+}
+
+.container .login-form p {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #fff
+}
+
+.container .login-form p a {
+    color: #f9ff44ba;
+    text-decoration: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.error-message {
+    font-weight: bold;
+}
+
+
+/* Button styles */
+button[type="submit"] {
+    position: relative;
+    min-width: 100px; /* Adjust as needed */
+    min-height: 40px; /* Adjust as needed */
+}
+  
+.button-text, .lds-dual-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+/* Loading animation styles */
+.lds-dual-ring,
+.lds-dual-ring:after {
+    box-sizing: border-box;
+}
+  
+.lds-dual-ring {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+  
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid currentColor;
+    border-color: currentColor transparent currentColor transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+  
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
