@@ -1,0 +1,11 @@
+@echo off
+cd /d "C:/Users/user/Desktop/rzo"
+
+:: Kill the process occupying port 3000
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr :3000') do (
+    taskkill /F /PID %%a
+)
+
+:: Run the server using PowerShell
+powershell -NoProfile -ExecutionPolicy Bypass -Command "node server.js"
+pause
