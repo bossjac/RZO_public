@@ -1,4 +1,12 @@
 @echo off
+:: Check for administrative privileges
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Requesting administrative privileges...
+    powershell -command "Start-Process '%~0' -Verb runAs"
+    exit /b
+)
+
 cd /d "C:/Users/user/Desktop/rzo"
 
 :: Kill the process occupying port 3000
